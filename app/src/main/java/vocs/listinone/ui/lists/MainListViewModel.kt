@@ -1,7 +1,7 @@
 package vocs.listinone.ui.lists
 
-import androidx.lifecycle.ViewModel
+import vocs.listinone.BaseViewModel
 
-class MainListViewModel : ViewModel() {
+class MainListViewModel( private val listMainRepository: MainListRepository) :  BaseViewModel<MainListView>() {
     // TODO: Implement the ViewModel
 }
