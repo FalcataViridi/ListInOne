@@ -4,11 +4,13 @@ import vocs.listinone.BaseRepository
 
 class MainListRepository  private constructor() : BaseRepository() {
 
-    fun getMainList (){ }
+    fun getMainListItem (id: String, itemList: ((MainListViewModel?) -> Unit)){
 
-    fun addList() { }
+    }
 
-    fun deleteList() { }
+    fun addListItem() { }
 
-    fun updateList() { }
+    fun deleteListItem() { }
+
+    fun updateListItem() { }
 }

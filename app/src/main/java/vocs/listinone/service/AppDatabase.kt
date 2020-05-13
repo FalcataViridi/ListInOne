@@ -8,13 +8,24 @@ import vocs.listinone.model.MainListItemData
 
 class AppDatabase private constructor() {
 
+    private lateinit var mainListItem: ((MainListItemData?) -> Unit)
     private val database = FirebaseDatabase.getInstance()
     private val dbRootRef = database.reference
 
     //TODO:definir nombre de DB
-    private val mainListNode = dbRootRef.child("definir DB name")
-
+    private val mainListNode = dbRootRef.child("main List")
     private lateinit var mainList: String
+
+    companion object {
+        private var appDatabase: AppDatabase? = null
+
+        fun getInstance(): AppDatabase {
+            if (appDatabase == null)
+                appDatabase =
+                    AppDatabase()
+            return appDatabase!!
+        }
+    }
 
     private val valueEventListener = object : ValueEventListener {
         override fun onDataChange(p0: DataSnapshot) {
@@ -35,14 +46,9 @@ class AppDatabase private constructor() {
         mainListNode.removeEventListener(valueEventListener)
     }
 
-    companion object {
-        private var appDatabase: AppDatabase? = null
+    fun getMainListItem(id: String, mainList: ((MainListItemData?) -> Unit)) {
+        this.mainListItem = mainList
+        //mainListNode.addValueEventListener(valueEventListener)
 
-        fun getInstance(): AppDatabase {
-            if (appDatabase == null)
-                appDatabase =
-                    AppDatabase()
-            return appDatabase!!
-        }
     }
 }
