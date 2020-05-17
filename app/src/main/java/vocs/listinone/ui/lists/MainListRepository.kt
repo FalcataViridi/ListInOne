@@ -1,11 +1,15 @@
 package vocs.listinone.ui.lists
 
+import androidx.lifecycle.MutableLiveData
 import vocs.listinone.BaseRepository
+import vocs.listinone.model.MainListItemData
 
 class MainListRepository  private constructor() : BaseRepository() {
 
-    fun getMainListItem (id: String, itemList: ((MainListViewModel?) -> Unit)){
+    private val mMutableProfileData = MutableLiveData<MainListItemData?>()
 
+    fun getMainListItem (id: String, onListItem: ((MainListItemData?) -> Unit)) {
+        return appDatabase.getMainListItem(id, onListItem)
     }
 
     fun addListItem() { }

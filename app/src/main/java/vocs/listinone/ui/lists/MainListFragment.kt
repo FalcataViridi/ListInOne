@@ -1,13 +1,18 @@
 package vocs.listinone.ui.lists
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import vocs.listinone.BaseFragment
+import vocs.listinone.R
 import vocs.listinone.model.MainListItemData
 
-class MainListFragment : BaseFragment(), MainListView {
+class MainListFragment : BaseFragment(), IMainListView {
 
     val mainListViewModel: MainListViewModel by viewModel()
+    val mainListName: String = "main list"
 
     companion object {
         fun newInstance() = MainListFragment()
@@ -15,17 +20,25 @@ class MainListFragment : BaseFragment(), MainListView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // mProfileViewModel = ViewModelProviders.of(this)[ProfileViewModel::class.java]
         mainListViewModel.attachView(this, this)
-        //mainListViewModel.getMainListItem("xxxxxxxx")
+        mainListViewModel.getMainListItem(mainListName)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        return inflater.inflate( R.layout.main_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        //TODO: define buttons' listener
     }
 
     override fun onListSaved(succes: Boolean) {
         TODO("Not yet implemented")
     }
 
-    override fun onList(mainList: MainListItemData?) {
-        TODO("Not yet implemented")
+    override fun onListItem(mainListItem: MainListItemData?) {
+
     }
 
 

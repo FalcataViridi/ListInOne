@@ -2,7 +2,7 @@ package vocs.listinone.ui.lists
 
 import vocs.listinone.model.MainListItemData
 
-interface MainListView {
+interface IMainListView {
     fun onListSaved(succes: Boolean)
-    fun onList(mainList: MainListItemData?)
+    fun onListItem(mainListItem: MainListItemData?)
 }
