@@ -12,6 +12,20 @@ class MainListRepository  private constructor() : BaseRepository() {
         return appDatabase.getMainListItem(id, onListItem)
     }
 
+    fun saveListItem (lisItem: MainListItemData, onSucces: ((Boolean?) -> Unit)? = null) {
+        return appDatabase.saveListItem(lisItem, onSucces)
+    }
+
+    companion object {
+        private var instance: MainListRepository? = null
+
+        fun getInstance(): MainListRepository {
+            if (instance == null)
+                instance = MainListRepository()
+            return instance!!
+        }
+    }
+
     fun addListItem() { }
 
     fun deleteListItem() { }

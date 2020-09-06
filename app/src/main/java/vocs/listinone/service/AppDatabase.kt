@@ -1,6 +1,5 @@
 package vocs.listinone.service
 
-import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -15,7 +14,7 @@ class AppDatabase private constructor() {
     private val dbRootRef = database.reference
 
     //TODO: Manage this keys of database
-    private val mainListName: String = "Lists"
+    private val mainListName: String = "ListInOne"
     private val mainListNode = dbRootRef.child(mainListName)
 
     companion object {
@@ -51,5 +50,12 @@ class AppDatabase private constructor() {
 
     private fun close() {
         mainListNode.removeEventListener(valueEventListener)
+    }
+
+    fun saveListItem(lisItem: MainListItemData, onSuccess: ((Boolean?) -> Unit)?) {
+        mainListNode.child(mainListName).setValue(lisItem)
+            .addOnCompleteListener {
+                onSuccess?.invoke(it.isSuccessful)
+            }
     }
 }
