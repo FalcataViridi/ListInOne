@@ -1,5 +1,6 @@
 package vocs.listinone.model
-import java.util.*
+
+import java.util.Date
 
 
 data class MainListItemData(val id: String = time("A")) {

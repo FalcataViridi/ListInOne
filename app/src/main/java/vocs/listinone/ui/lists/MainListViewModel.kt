@@ -16,7 +16,6 @@ class MainListViewModel( private val mainListRepository: MainListRepository) :  
         getView().onListSaved(it)
     }
 
-
     fun getMainListItem(id: String) {
         mainListRepository.getMainListItem(id){
             mainListData.postValue(it)

@@ -7,7 +7,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import vocs.listinone.R
-import vocs.listinone.service.AppDatabase.Companion.getInstance
 import vocs.listinone.ui.lists.MainListFragment
 import vocs.listinone.ui.lists.MainListRepository
 import vocs.listinone.ui.lists.MainListViewModel
@@ -20,8 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initKoin()
         setContentView(R.layout.home_activity)
-
-        //launchMainListFragment()
+        launchMainListFragment()
     }
 
     private fun initKoin() {
@@ -33,7 +31,6 @@ class MainActivity : AppCompatActivity() {
                 MainListRepository.getInstance()
             }
         }
-        // start Koin!
         startKoin {
             androidContext(applicationContext)
             modules(myModule)
