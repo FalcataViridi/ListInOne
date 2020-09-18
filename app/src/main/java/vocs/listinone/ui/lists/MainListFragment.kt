@@ -11,11 +11,14 @@ import android.view.animation.AnimationUtils.loadAnimation
 import android.widget.ArrayAdapter
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.mainlist_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import vocs.listinone.BaseFragment
 import vocs.listinone.R
 import vocs.listinone.model.MainListItemData
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainListFragment : BaseFragment(), IMainListView {
@@ -46,22 +49,12 @@ class MainListFragment : BaseFragment(), IMainListView {
     }
 
     private fun initListView() {
-        /*val falldownAnim = AnimationUtils.loadLayoutAnimation(
-            context
-            , R.anim.mainlist_anim_falldown)*/
+        var listOfLists= this.getLists()
+        rv_mainlist.layoutManager = LinearLayoutManager(this.requireContext())
 
-        var commandList = ArrayList<String>()
-        commandList.clear()
-        commandList.add("testing 1")
-        commandList.add("testing dog")
-        commandList.add("MainListKeys.ACEPTAR.key")
-        commandList.add("testing keys")
+        var mainListAdapter: MainListAdapter = MainListAdapter(listOfLists, this.requireContext())
 
-        var commandAdapter = ArrayAdapter<String>(requireContext(), R.layout.item_mainlist, commandList)
-
-        val animFallDown = loadAnimation(this.context, R.anim.mainlist_anim_falldown)
-        rv_mainlist.startAnimation(animFallDown)
-
+        rv_mainlist.adapter = mainListAdapter
     }
 
     override fun onListSaved(succes: Boolean) {
@@ -76,6 +69,20 @@ class MainListFragment : BaseFragment(), IMainListView {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.RECORD_AUDIO), 101)
         }
+    }
+
+    fun getLists(): ArrayList<MainListItemData> {
+        var lists = ArrayList<MainListItemData>()
+        lists.add(MainListItemData())
+        lists.add(MainListItemData())
+        lists.add(MainListItemData())
+        lists.add(MainListItemData())
+        lists.add(MainListItemData())
+        lists.add(MainListItemData())
+        lists.add(MainListItemData())
+        lists.add(MainListItemData())
+
+        return lists
     }
 }
 
