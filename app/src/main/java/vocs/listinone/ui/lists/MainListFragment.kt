@@ -73,14 +73,14 @@ class MainListFragment : BaseFragment(), IMainListView {
 
     fun getLists(): ArrayList<MainListItemData> {
         var lists = ArrayList<MainListItemData>()
-        lists.add(MainListItemData())
-        lists.add(MainListItemData())
-        lists.add(MainListItemData())
-        lists.add(MainListItemData())
-        lists.add(MainListItemData())
-        lists.add(MainListItemData())
-        lists.add(MainListItemData())
-        lists.add(MainListItemData())
+        lists.add(MainListItemData( "Item 1"))
+        lists.add(MainListItemData( "Item 2"))
+        lists.add(MainListItemData( "Item 3"))
+        lists.add(MainListItemData( "Item 4"))
+        lists.add(MainListItemData( "Item 5"))
+        lists.add(MainListItemData( "Item 6"))
+        lists.add(MainListItemData( "Item 7"))
+        lists.add(MainListItemData( "Item 8"))
 
         return lists
     }

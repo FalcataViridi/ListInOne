@@ -10,7 +10,7 @@ import vocs.listinone.R
 import vocs.listinone.model.MainListItemData
 
 class MainListAdapter(val items: ArrayList<MainListItemData>, val context: Context)
-    : androidx.recyclerview.widget.RecyclerView.Adapter<ViewHolderMainList>() {
+    : RecyclerView.Adapter<ViewHolderMainList>() {
 
     var elementChanging = ""
     var newText = ""
