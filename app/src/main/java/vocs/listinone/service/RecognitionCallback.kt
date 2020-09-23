@@ -1,10 +1,8 @@
 package vocs.listinone.service
 
 import android.os.Bundle
+import vocs.listinone.model.RecognitionStatus
 
-/**
- * Created by Moises on 29/07/2018.
- */
 interface RecognitionCallback {
     fun onPrepared(status: RecognitionStatus)
     fun onBeginningOfSpeech()

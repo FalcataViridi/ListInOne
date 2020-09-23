@@ -32,8 +32,8 @@ class MainListFragment : BaseFragment(), IMainListView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainListViewModel.attachView(this, this)
-        mainListViewModel.getMainListItem(mainListName)
+
+
 
     }
 
@@ -45,16 +45,24 @@ class MainListFragment : BaseFragment(), IMainListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configPermission()
-        initListView()
+        initView()
+        initViewModel()
     }
 
-    private fun initListView() {
+
+
+    private fun initView() {
         var listOfLists= this.getLists()
         rv_mainlist.layoutManager = LinearLayoutManager(this.requireContext())
 
         var mainListAdapter: MainListAdapter = MainListAdapter(listOfLists, this.requireContext())
 
         rv_mainlist.adapter = mainListAdapter
+    }
+
+    private fun initViewModel() {
+        mainListViewModel.attachView(this, this)
+        mainListViewModel.getMainListItem(mainListName)
     }
 
     override fun onListSaved(succes: Boolean) {
@@ -79,6 +87,8 @@ class MainListFragment : BaseFragment(), IMainListView {
         lists.add(MainListItemData( "Item 4"))
         lists.add(MainListItemData( "Item 5"))
         lists.add(MainListItemData( "Item 6"))
+        lists.add(MainListItemData( "Item 7"))
+        lists.add(MainListItemData( "Item 8"))
         lists.add(MainListItemData( "Item 7"))
         lists.add(MainListItemData( "Item 8"))
 

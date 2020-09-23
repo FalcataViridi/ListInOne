@@ -9,6 +9,7 @@ import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.util.Log
 import android.widget.Toast
+import vocs.listinone.model.RecognitionStatus
 
 class RecognitionManager(private val context: Context
                          , private val callback: RecognitionCallback? = null
@@ -138,7 +139,6 @@ class RecognitionManager(private val context: Context
         keyWords.forEach {
             if (textToMatch.toLowerCase() == it.toLowerCase()) return it
         }
-
         return ""
     }
 
